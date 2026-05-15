@@ -1,12 +1,10 @@
 -- =============================================================================
--- Project : Predicting Urban Traffic Congestion (SDCC, Jan–Jun 2022)
--- Task    : T2.4 — SQL VIEW definitions
--- Owner   : D
--- DB      : MariaDB 11.3.2 (DBRepo)
--- Depends : data/create.sql (T2.1 schema)
+-- Predicting Urban Traffic Congestion — SQL view definitions
+-- Database: MariaDB 11.x
+-- Depends on the schema in data/create.sql.
 -- =============================================================================
--- Five views de-normalise the 3NF schema into query-ready forms for the ML
--- pipeline and for downstream API consumption (T2.6).
+-- Five views de-normalise the 3NF schema into query-ready forms for analysis
+-- and modelling:
 --
 --   1. v_measurements_enriched          base denormalised join
 --   2. v_ml_feature_set                 ML-ready features + 5-class target
@@ -16,10 +14,10 @@
 --
 -- Note on target binning: v_ml_feature_set.target uses MariaDB NTILE(5),
 -- which always produces five rank-based buckets and may split tied values
--- arbitrarily. The reference notebook (notebooks/01_…_mlp.ipynb) uses
--- pandas qcut(..., duplicates='drop'), which can collapse buckets when many
--- tied values exist (common at sites with mostly-zero `cong`). Class
--- labels may therefore differ slightly between the two implementations.
+-- arbitrarily. The reference notebook uses pandas qcut(..., duplicates='drop'),
+-- which can collapse buckets when many tied values exist (common at sites with
+-- mostly-zero `cong`). Class labels may therefore differ slightly between the
+-- two implementations.
 -- =============================================================================
 
 
@@ -154,7 +152,7 @@ GROUP BY site_id, target;
 
 
 -- =============================================================================
--- Verification queries (for T2.5, after data load)
+-- Verification queries (run after data load to sanity-check the views)
 -- =============================================================================
 -- SELECT COUNT(*) FROM v_measurements_enriched;
 --   -- expect: same row count as TrafficMeasurements (joins are inner; every
