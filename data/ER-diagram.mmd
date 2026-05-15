@@ -1,0 +1,25 @@
+erDiagram
+    TRAFFIC_SITES ||--o{ TRAFFIC_MEASUREMENTS : "contains"
+    CALENDAR ||--o{ TRAFFIC_MEASUREMENTS : "period for"
+
+    TRAFFIC_SITES {
+        varchar site_id PK "Site Serial Number"
+    }
+
+    CALENDAR {
+        date date PK
+        string day_of_week
+    }
+
+    TRAFFIC_MEASUREMENTS {
+        bigint observation_id PK
+        int site_id FK
+        date date FK
+        time end_time
+        int flow "Raw flow count"
+        float flow_pc "Flow percentage"
+        int cong "Congestion"
+        float cong_pc
+        int dsat "Degree of saturation"
+        float dsat_pc
+    }
