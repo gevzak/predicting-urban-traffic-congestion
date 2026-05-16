@@ -35,50 +35,51 @@ The repository folder structure is depicted below.
 
 ## Views
 
-The database exposes five SQL views that de-normalise the schema in
-[data/create.sql](data/create.sql) into query-ready forms for analysis
-and modelling. Definitions are in [data/views.sql](data/views.sql).
+The database exposes three SQL views that de-normalise the schema in
+[data/create.sql](data/create.sql) into query-ready slices. Definitions
+live in [data/views.sql](data/views.sql) and are created in DBRepo by
+[notebooks/create-views-DBrepo-notebook.ipynb](notebooks/create-views-DBrepo-notebook.ipynb).
+
+All three views are inner joins of `TrafficMeasurements`, `Calendar`, and
+`TrafficSites`, with optional `WHERE` filters. They are expressible in
+DBRepo's structured query model, so they can be created via the REST API
+and consumed through DBRepo's view-data endpoints. Feature engineering
+that requires computed columns, window functions, or aggregations —
+cyclical time encoding, the 5-class congestion target, class-balanced
+sampling, hourly aggregation — is performed downstream in Python after
+fetching from these views.
 
 ### `v_measurements_enriched`
 
-Flat row-per-observation join of `TrafficMeasurements` with `TrafficSites`
-and `Calendar`, adding `day_of_week`. Use this when you want every
-measurement alongside its site and date context without writing the
-joins yourself.
+- **Contains:** one row per measurement with `day_of_week` joined in from
+  `Calendar` alongside the original metric columns
+  (`flow`, `flow_pc`, `cong`, `cong_pc`, `dsat`, `dsat_pc`,
+  `start_time`, `end_time`).
+- **Why it exists:** the 3NF schema spreads every observation across three
+  tables. Any analysis touching the calendar or site has to re-state the
+  join. This view does it once.
+- **Helps the ML pipeline:** acts as the general-purpose data source —
+  the Python pipeline pulls from this view and computes its own features
+  (`sin_time`, `cos_time`, `day_num`, target class).
 
-### `v_ml_feature_set`
+### `v_weekday_measurements`
 
-ML-ready feature table. One row per observation with `flow`, `flow_pc`,
-`dsat`, `dsat_pc`, cyclical time encodings (`sin_time`, `cos_time`),
-`day_num` (0 = Monday … 6 = Sunday), and a 5-class `target` derived from
-per-site `NTILE(5)` over `cong`. Selecting from this view yields the
-inputs and labels the classifier consumes.
+- **Contains:** the same columns as `v_measurements_enriched`, filtered
+  to rows where `day_of_week` is not `Saturday` or `Sunday`.
+- **Why it exists:** weekend traffic patterns differ markedly from
+  weekday patterns; a weekday-only slice is a reasonable default for
+  training and evaluating the congestion classifier.
+- **Helps the ML pipeline:** lets the pipeline pull a weekday-only
+  training subset in one request, without filtering in pandas
+  after the fact.
 
-> Note: per-site target binning here uses MariaDB `NTILE(5)`, which
-> always produces five rank-based buckets. The reference notebook uses
-> pandas `qcut(..., duplicates='drop')` which collapses tied buckets,
-> so labels for sites with sparse non-zero `cong` may differ slightly
-> between the two implementations.
+### `v_peak_hour_measurements`
 
-### `v_class_balanced_training_sample`
-
-Up to 10 000 rows per `target` class, drawn via
-`ROW_NUMBER() OVER (PARTITION BY target ORDER BY RAND())`. Designed for
-training when the raw distribution is too skewed (class 0 dominates the
-fact table). Same columns as `v_ml_feature_set`.
-
-> Note: `ORDER BY RAND()` re-evaluates on every query, so the sample is
-> not stable across calls. For reproducible runs, snapshot the result
-> or seed selection client-side.
-
-### `v_hourly_site_aggregates`
-
-Per `(site_id, date_id, hour_of_day)` averages of `flow`, `cong`, `dsat`
-and their `*_pc` percentage counterparts, plus `interval_count`. Useful
-for daily-profile analysis and richer time-of-day features.
-
-### `v_site_class_distribution`
-
-Per `(site_id, target)` observation counts. Surfaces how class
-imbalance varies across sites — helpful for per-site evaluation and for
-spotting sites with degenerate class distributions.
+- **Contains:** the same columns as `v_measurements_enriched`, filtered
+  to morning rush (`07:00 ≤ start_time ≤ 09:00`) and evening rush
+  (`17:00 ≤ start_time ≤ 19:00`).
+- **Why it exists:** congestion concentrates in these windows, so this
+  slice has a less extreme class imbalance than the full dataset.
+- **Helps the ML pipeline:** a useful training subset when the goal is
+  to learn the higher-congestion classes that are sparse in the full
+  data.

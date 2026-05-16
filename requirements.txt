@@ -5,3 +5,4 @@ seaborn
 tensorflow
 pyarrow
 scikit-learn
+dbrepo
