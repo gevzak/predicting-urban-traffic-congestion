@@ -27,7 +27,7 @@ CREATE OR REPLACE VIEW v_measurements_enriched AS
 SELECT
     m.observation_id,
     m.site_id,
-    m.date_id,
+    m.date,
     c.day_of_week,
     m.start_time,
     m.end_time,
@@ -38,7 +38,7 @@ SELECT
     m.dsat,
     m.dsat_pc
 FROM TrafficMeasurements m
-JOIN Calendar     c ON c.date_id = m.date_id
+JOIN Calendar     c ON c.date = m.date
 JOIN TrafficSites s ON s.site_id = m.site_id;
 
 
@@ -52,7 +52,7 @@ CREATE OR REPLACE VIEW v_weekday_measurements AS
 SELECT
     m.observation_id,
     m.site_id,
-    m.date_id,
+    m.date,
     c.day_of_week,
     m.start_time,
     m.end_time,
@@ -63,10 +63,9 @@ SELECT
     m.dsat,
     m.dsat_pc
 FROM TrafficMeasurements m
-JOIN Calendar     c ON c.date_id = m.date_id
+JOIN Calendar     c ON c.date = m.date
 JOIN TrafficSites s ON s.site_id = m.site_id
-WHERE c.day_of_week != 'Saturday'
-  AND c.day_of_week != 'Sunday';
+WHERE c.day_of_week NOT IN ('SA', 'SU');
 
 
 -- -----------------------------------------------------------------------------
@@ -81,7 +80,7 @@ CREATE OR REPLACE VIEW v_peak_hour_measurements AS
 SELECT
     m.observation_id,
     m.site_id,
-    m.date_id,
+    m.date,
     c.day_of_week,
     m.start_time,
     m.end_time,
@@ -92,10 +91,14 @@ SELECT
     m.dsat,
     m.dsat_pc
 FROM TrafficMeasurements m
-JOIN Calendar     c ON c.date_id = m.date_id
+JOIN Calendar     c ON c.date = m.date
 JOIN TrafficSites s ON s.site_id = m.site_id
-WHERE (m.start_time >= '07:00:00' AND m.start_time <= '09:00:00')
-   OR (m.start_time >= '17:00:00' AND m.start_time <= '19:00:00');
+WHERE m.start_time IN (
+    '07:00', '07:15', '07:30', '07:45',
+    '08:00', '08:15', '08:30', '08:45', '09:00',
+    '17:00', '17:15', '17:30', '17:45',
+    '18:00', '18:15', '18:30', '18:45', '19:00'
+);
 
 
 -- =============================================================================
@@ -106,10 +109,10 @@ WHERE (m.start_time >= '07:00:00' AND m.start_time <= '09:00:00')
 --
 -- SELECT day_of_week, COUNT(*) FROM v_weekday_measurements
 --   GROUP BY day_of_week;
---   -- expect: 5 rows, Monday..Friday, none for Saturday/Sunday
+--   -- expect: 5 rows, MO/TU/WE/TH/FR, none for SA/SU
 --
--- SELECT HOUR(start_time) AS h, COUNT(*) FROM v_peak_hour_measurements
+-- SELECT SUBSTRING(start_time, 1, 2) AS h, COUNT(*) FROM v_peak_hour_measurements
 --   GROUP BY h ORDER BY h;
---   -- expect: rows only for hours 7,8,9,17,18,19 (boundary hour 9 and 19
+--   -- expect: rows only for hours 07,08,09,17,18,19 (boundary hour 09 and 19
 --   --         included by the <= comparison)
 -- =============================================================================

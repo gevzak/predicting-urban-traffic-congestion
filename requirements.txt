@@ -6,3 +6,4 @@ tensorflow
 pyarrow
 scikit-learn
 dbrepo
+python-dotenv
