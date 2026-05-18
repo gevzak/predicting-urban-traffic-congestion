@@ -7,12 +7,11 @@ This repository follows a structured naming convention aligned with the traffic 
 **General format:**
 
 ```
-<project>_<stage>_<description>_<version>.<extension>
+<project>_<stage>_<description>.<extension>
 ```
 * project: sdcc_traffic
 * stage: raw, target, features, model, fig, etc.
 * description: brief explanation of contents
-* version: version number (v1, v2, …)
 
 For configuration files, it will be simplified down to
 
@@ -28,7 +27,7 @@ The repository folder structure is depicted below.
 │   └── raw 
 ├── docs
 ├── notebooks
-├── outputs
+└── outputs
     ├── figures
     └── models
 ```
@@ -72,14 +71,3 @@ fetching from these views.
 - **Helps the ML pipeline:** lets the pipeline pull a weekday-only
   training subset in one request, without filtering in pandas
   after the fact.
-
-### `v_peak_hour_measurements`
-
-- **Contains:** the same columns as `v_measurements_enriched`, filtered
-  to morning rush (`07:00 ≤ start_time ≤ 09:00`) and evening rush
-  (`17:00 ≤ start_time ≤ 19:00`).
-- **Why it exists:** congestion concentrates in these windows, so this
-  slice has a less extreme class imbalance than the full dataset.
-- **Helps the ML pipeline:** a useful training subset when the goal is
-  to learn the higher-congestion classes that are sparse in the full
-  data.
