@@ -71,3 +71,42 @@ fetching from these views.
 - **Helps the ML pipeline:** lets the pipeline pull a weekday-only
   training subset in one request, without filtering in pandas
   after the fact.
+
+## DBRepo API access
+
+The experiment loads data from the TU Wien DBRepo REST API only — no local
+CSVs are read by the experiment notebook.
+
+- **Base URL:** `https://test.dbrepo.tuwien.ac.at` (configurable via the
+  `DBREPO_ENDPOINT` value in `.env`).
+- **Client library:** `dbrepo` Python SDK (`RestClient`), which wraps the
+  DBRepo REST API.
+- **Endpoints used (through the SDK):**
+  - `GET /api/database`                              — list databases (auth + connectivity probe)
+  - `GET /api/database/{id}/view`                    — list views in a database
+  - `GET /api/database/{id}/view/{vid}/data`         — fetch view rows (paged)
+  - `GET /api/database/{id}/view/{vid}/data/count`   — view row count
+- **Views consumed:** `v_measurements_enriched` is the main data source for
+  the experiment notebook. `v_weekday_measurements` is also registered and
+  available for weekday-only slices.
+- **Authentication:** TU Wien DBRepo username + password.
+  Username read from `DBREPO_USERNAME` in `.env`; password resolved from
+  the `DBREPO_PASSWORD` env var if set, otherwise prompted interactively via
+  `getpass`. The `.env` file is in `.gitignore`.
+- **Loader module:** [`src/dbrepo_loader.py`](src/dbrepo_loader.py).
+  `load_view(name)` returns a typed `pandas.DataFrame` with view-native
+  column names and integer columns coerced back from DBRepo's text
+  representation. Typed exceptions (`DBRepoConfigError`, `DBRepoAuthError`,
+  `DBRepoConnectionError`, `DBRepoViewNotFound`) let callers translate
+  failures into clear diagnostics.
+- **Parity check:** [`src/compare_csv_vs_dbrepo.py`](src/compare_csv_vs_dbrepo.py)
+  verifies the DBRepo view returns the same data as the original CSV
+  source. Run it with:
+  ```bash
+  python src/compare_csv_vs_dbrepo.py
+  ```
+  Exit codes: `0` = identical, `1` = data mismatch (the 5-step diagnostic
+  report identifies the failing step), `2` = infrastructure failure
+  (connection, auth, config, missing view). Use `--limit N` for a fast
+  sanity check; use `--dump-diff PATH` to write the full per-row diff to a
+  CSV when a mismatch occurs.
