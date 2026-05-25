@@ -1,0 +1,213 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "fair4ml": "https://w3id.org/fair4ml#"
+  },
+  "@type": "fair4ml:MLModel",
+
+  "schema:name": "Traffic Congestion Prediction MLP Model",
+  "schema:description": "Multilayer Perceptron classifier trained to predict traffic congestion levels (0–4) based on traffic flow, disaturation, temporal features, and site-level data. inputLayer=X_train.shape[1], batchNormalization=True, hiddenLayers=[64 (dropout=0.2), 32], activation=relu, outputLayer=softmax (5 classes), optimizer=Adam, learningRate=0.001, lossFunction=sparse_categorical_crossentropy, batchSize=1024, epochs=50 (earlyStoppingPatience=5, reduceLrPatience=3, reduceLrFactor=0.2), classWeight=balanced, randomState=42, splits=60/20/20.",
+
+  "fair4ml:modelCategory": "Multilayer Perceptron (MLP) Classifier (TensorFlow Keras Sequential API v3.13.2)",
+
+  "fair4ml:trainedOn": {
+    "@type": "schema:Dataset",
+    "schema:name": "Traffic Flow Data Jan to June 2022 SDCC",
+    "schema:identifier": "http://data.europa.eu/88u/dataset/e3a592bf-1342-4150-b8ae-4ca7a89f2c70"
+  },
+
+  "fair4ml:evaluatedWith": {
+    "@type": "fair4ml:MLModelEvaluation",
+    "fair4ml:evaluationMetrics": [
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:0]",
+        "schema:value": 0.7950
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:1]",
+        "schema:value": 0.1673
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:2]",
+        "schema:value": 0.0185
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:3]",
+        "schema:value": 0.0087
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:4]",
+        "schema:value": 0.0104
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:0]",
+        "schema:value": 0.0793
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:1]",
+        "schema:value": 0.5813
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:2]",
+        "schema:value": 0.1553
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:3]",
+        "schema:value": 0.1023
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:4]",
+        "schema:value": 0.0818
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:0]",
+        "schema:value": 0.0240
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:1]",
+        "schema:value": 0.3394
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:2]",
+        "schema:value": 0.2594
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:3]",
+        "schema:value": 0.1823
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:4]",
+        "schema:value": 0.1948
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:0]",
+        "schema:value": 0.0077
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:1]",
+        "schema:value": 0.1895
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:2]",
+        "schema:value": 0.1948
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:3]",
+        "schema:value": 0.2240
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:4]",
+        "schema:value": 0.3839
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:0]",
+        "schema:value": 0.0012
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:1]",
+        "schema:value": 0.0501
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:2]",
+        "schema:value": 0.1032
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:3]",
+        "schema:value": 0.1761
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:4]",
+        "schema:value": 0.6694
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Average Precision",
+        "schema:propertyID": "AP_Class_0",
+        "schema:value": 1.0
+      },
+      {
+      "@type": "schema:PropertyValue",
+      "schema:name": "Area Under Curve",
+      "schema:propertyID": "AUC_Class_0",
+      "schema:value": 0.95
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Average Precision",
+        "schema:propertyID": "AP_Class_1",
+        "schema:value": 0.12
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Area Under Curve",
+        "schema:propertyID": "AUC_Class_1",
+        "schema:value": 0.83
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Average Precision",
+        "schema:propertyID": "AP_Class_2",
+        "schema:value": 0.10
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Area Under Curve",
+        "schema:propertyID": "AUC_Class_2",
+        "schema:value": 0.93
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Average Precision",
+        "schema:propertyID": "AP_Class_3",
+        "schema:value": 0.18
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Area Under Curve",
+        "schema:propertyID": "AUC_Class_3",
+        "schema:value": 0.96
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Average Precision",
+        "schema:propertyID": "AP_Class_4",
+        "schema:value": 0.30
+      },
+      {
+        "@type": "schema:PropertyValue",
+        "schema:name": "Area Under Curve",
+        "schema:propertyID": "AUC_Class_4",
+        "schema:value": 0.98
+      }
+    ]
+  },
+
+  "fair4ml:intendedUse": "Predict multi-level traffic congestion (0–4) from sensor and temporal features for traffic engineers and urban mobility analysts.",
+
+  "fair4ml:modelRisksBiasLimitations": "Model performance depends on the quality of sensor data. Class imbalance handled via weighting but may still bias predictions. Generalization outside observed traffic sites and across seasons is not validated. Target labels are derived using heuristic quantile-based binning."
+}
