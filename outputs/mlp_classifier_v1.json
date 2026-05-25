@@ -13,7 +13,7 @@
   "fair4ml:trainedOn": {
     "@type": "schema:Dataset",
     "schema:name": "Traffic Flow Data Jan to June 2022 SDCC",
-    "schema:identifier": "http://data.europa.eu/88u/dataset/e3a592bf-1342-4150-b8ae-4ca7a89f2c70"
+    "schema:identifier": "e3a592bf-1342-4150-b8ae-4ca7a89f2c70"
   },
 
   "fair4ml:evaluatedWith": {

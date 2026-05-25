@@ -1,4 +1,59 @@
-# Predicting Urban Traffic Congestion
+# Predicting Urban Traffic Congestion Levels using Multi-Layer Perceptrons on SDCC SCOOT Data
+
+## Abstract
+
+This experiment aims to classify traffic congestion levels across South Dublin County. Using
+the *Traffic Flow Data Jan to June 2022 SDCC* dataset, which contains high-resolution (15-minute)
+measurements of flow, saturation (`dsat`), and congestion (`cong`), I engineered a 5-tier classification
+system (Free Flow (0) to Severe Congestion (5)) based on site-specific quantiles. A Multi-Layer
+Perceptron (MLP) was implemented using TensorFlow to predict these categories. Despite a heavy
+class imbalance (93% Free Flow), the model was optimized using class-weighting and cyclical time
+encoding. The results demonstrate the feasibility of using SCOOT-derived metrics to provide early
+warnings for traffic management systems.
+
+## Requirements and Installation
+
+Requirements are separated into `requirements/local.txt` and `requirements/colab.txt`. For former contains libraries
+that are required for notebooks and python scripts that can be run locally. The latter contains libraries required for
+running the full ML pipeline on Google Colab: `01_sdcc_traffic_full_pipeline_mlp.ipynb`and `dbrepo_loader.py`. The ML
+pipeline can be run by following the steps below:
+
+1. From [Google Colab](https://colab.research.google.com/) click on Upload on the left menu of the pop-up. Then upload
+`notebooks/01_sdcc_traffic_full_pipeline_mlp.ipynb`. 
+2. Click on Files (![](images/folder_icon.png)) on the left-most menu. 
+3. Click on Upload to session storage (![](images/upload_icon.png)) under the Files menu.
+   - Dragging files into the Files menu is also an option.
+4. Upload `src/dbrepo_loader.py`, `requirements/colab.txt`, `config_mlp_v1.yaml`, and `.env`. Ensure that all variables 
+are properly defined in `.env`.
+5. Run the notebook.
+   - Note that loading the data from dbrepo will likely fail. If it does, keep rerunning the cell until the data is 
+   successfully loaded. This may take more than 10 attempts. 
+
+## Reproduction Instructions
+
+Exact reproducibility cannot be guranteed due to floating-point non-determinism in parallel GPU execution.
+Reproducibility can be guranteed by training on CPU. However, this was not done due to the long wall times for training.
+
+Models can be re-created by reading the appropriate FAIR4ML metadata at [Insert TUWRD Model DOI Link from T3.9] and adjusting 
+`config_mlp_v1.yaml` accordingly. The trained models will be funtionally equivalent in performance metrics, but weights
+and predictions are not guranteed to be numerically identical.
+
+## Description of Inputs and Outputs
+
+### Ingestion Inputs
+* **Training Source Data:** `v_measurements_enriched` (Fetched via DBRepo). Originating platform identifier: 
+`e3a592bf-1342-4150-b8ae-4ca7a89f2c70` (Traffic Flow Data Jan to June 2022 SDCC).
+* **Dataset Schema & Units:** `croissant.json` — Maps data layers to QUDT semantic units.
+* **Pipeline Source Code:** Python training notebooks, relevant scripts, and dependencies pinned via `codemeta.json`.
+
+### Preserved Outputs
+* **Trained Model Checkpoint:** `outputs/models/` — Deep learning classifier weights. Registered at TUWRD: 
+[Insert TUWRD Model DOI Link from T3.9].
+* **Model Metadata:** `mlp_classifier_v1.json` — Compliant machine-readable asset tracking sheet. Registered at TUWRD: 
+[Insert TUWRD Model DOI Link from T3.9]
+* **Performance Evaluation Records:** Plots (`outputs/figures/`). Registered at TUWRD: 
+[Insert TUWRD Generated Data DOI Link from T3.10].
+* **Human Documentation:** `docs/model-card.md` — Contextual overview of risks and evaluation benchmarks.
 
 ## File Organization
 
@@ -23,13 +78,18 @@ The repository folder structure is depicted below.
 
 ```md
 ├── data
-│   ├── processed
-│   └── raw 
+│   ├── processed
+│   ├── raw
 ├── docs
+│   ├── superpowers
+│   ├── plans
+│   └── specs
 ├── notebooks
-└── outputs
-    ├── figures
-    └── models
+├── outputs
+│   ├── figures
+│   └── models
+├── requirements
+└── src
 ```
 
 ## Views
@@ -110,3 +170,12 @@ CSVs are read by the experiment notebook.
   (connection, auth, config, missing view). Use `--limit N` for a fast
   sanity check; use `--dump-diff PATH` to write the full per-row diff to a
   CSV when a mismatch occurs.
+
+## Licenses
+
+## Contributors with ORCIDs
+
+- Habib Ahmad - 
+- Johannes Held - 
+- Kyzer Gerez - 0000-0003-4463-3929
+- Gevorg Zakaryan - 0009-0002-8980-8948
