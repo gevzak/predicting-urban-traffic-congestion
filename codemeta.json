@@ -1,0 +1,67 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "Predicting Urban Traffic Congestion",
+  "description": "Machine learning pipeline for predicting urban traffic congestion using SDCC traffic flow data with semantic metadata mapping, 3NF database design, and DBRepo integration.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "codeRepository": "https://github.com/gevzak/predicting-urban-traffic-congestion",
+  "issueTracker": "https://github.com/gevzak/predicting-urban-traffic-congestion/issues",
+  "dateCreated": "2025-01-15",
+  "dateModified": "2026-05-26",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "Python",
+    "version": "3.x"
+  },
+  "runtimePlatform": "Python 3.10+",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Habib Ahmad",
+      "affiliation": "TU Wien",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "https://registry.identifiers.org/registry/orcid",
+        "value": "0009-0002-0332-2702"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Gevorg Zakaryan",
+      "affiliation": "TU Wien",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "https://registry.identifiers.org/registry/orcid",
+        "value": "0009-0002-8980-8948"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Kyzer Gerez",
+      "affiliation": "TU Wien",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "https://registry.identifiers.org/registry/orcid",
+        "value": "0000-0003-4463-3929"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Johannes Held",
+      "affiliation": "TU Wien"
+    }
+  ],
+  "dependencies": [
+    {"name": "dbrepo", "version": "1.13.8"},
+    {"name": "matplotlib", "version": "3.10.9"},
+    {"name": "numpy", "version": "2.4.6"},
+    {"name": "pandas", "version": "3.0.3"},
+    {"name": "protobuf", "version": "7.35.0"},
+    {"name": "python-dotenv", "version": "1.2.2"},
+    {"name": "scikit-learn", "version": "1.8.0"},
+    {"name": "seaborn", "version": "0.13.2"},
+    {"name": "tensorflow", "version": "2.20.0"},
+    {"name": "pyyaml", "version": "6.0.3"}
+  ]
+}
