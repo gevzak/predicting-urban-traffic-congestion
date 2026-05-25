@@ -1,0 +1,55 @@
+project:
+  name: traffic_congestion_classification
+  task: multiclass_classification
+  random_seed: 42
+
+data_split:
+  train: 0.60
+  validation: 0.20
+  test: 0.20
+
+model:
+  type: mlp # metadata only
+  framework: tensorflow_keras # metadata only
+
+  input_layer:
+    shape: X_train.shape[1] # only for metadata purposes; hardcoded in notebook
+
+  batch_normalization: true # metadata only
+
+  hidden_layers: # hardcoded to two layers
+    - units: 64
+      activation: relu
+      dropout: 0.2
+
+    - units: 32
+      activation: relu
+
+  output_layer:
+    activation: softmax
+
+training:
+  optimizer:
+    name: Adam # metadata only; hardcoded in notebook
+    learning_rate: 0.001
+
+  loss_function: sparse_categorical_crossentropy
+
+  metrics: accuracy
+
+  batch_size: 1024
+  epochs: 50
+
+  class_weights: balanced
+
+callbacks:
+  early_stopping:
+    monitor: val_loss
+    patience: 5
+    restore_best_weights: true
+
+  reduce_lr_on_plateau:
+    monitor: val_loss
+    factor: 0.2
+    patience: 3
+    min_lr: 0.00001

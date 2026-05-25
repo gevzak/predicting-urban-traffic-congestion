@@ -6,7 +6,7 @@
   "@type": "fair4ml:MLModel",
 
   "schema:name": "Traffic Congestion Prediction MLP Model",
-  "schema:description": "Multilayer Perceptron classifier trained to predict traffic congestion levels (0–4) based on traffic flow, disaturation, temporal features, and site-level data. inputLayer=X_train.shape[1], batchNormalization=True, hiddenLayers=[64 (dropout=0.2), 32], activation=relu, outputLayer=softmax (5 classes), optimizer=Adam, learningRate=0.001, lossFunction=sparse_categorical_crossentropy, batchSize=1024, epochs=50 (earlyStoppingPatience=5, reduceLrPatience=3, reduceLrFactor=0.2), classWeight=balanced, randomState=42, splits=60/20/20.",
+  "schema:description": "Multilayer Perceptron classifier trained to predict traffic congestion levels (0–4) based on traffic flow, disaturation, temporal features, and site-level data. hiddenLayers=[64 (dropout=0.2), 32], activation=relu, outputLayer=softmax, optimizer=Adam, learningRate=0.001, lossFunction=sparse_categorical_crossentropy, batchSize=1024, epochs=50 (earlyStoppingPatience=5, reduceLrPatience=3, reduceLrFactor=0.2), classWeight=balanced, randomState=42, splits=60/20/20.",
 
   "fair4ml:modelCategory": "Multilayer Perceptron (MLP) Classifier (TensorFlow Keras Sequential API v3.13.2)",
 
@@ -22,127 +22,131 @@
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:0]",
-        "schema:value": 0.7950
+        "schema:value": 0.8192
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:1]",
-        "schema:value": 0.1673
+        "schema:value": 0.1312
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:2]",
-        "schema:value": 0.0185
+        "schema:value": 0.0284
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:3]",
-        "schema:value": 0.0087
+        "schema:value": 0.0100
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:0, Predicted:4]",
-        "schema:value": 0.0104
+        "schema:value": 0.0112
       },
+
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:0]",
-        "schema:value": 0.0793
+        "schema:value": 0.0717
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:1]",
-        "schema:value": 0.5813
+        "schema:value": 0.5447
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:2]",
-        "schema:value": 0.1553
+        "schema:value": 0.1809
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:3]",
-        "schema:value": 0.1023
+        "schema:value": 0.1059
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:1, Predicted:4]",
-        "schema:value": 0.0818
+        "schema:value": 0.0968
       },
+
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:0]",
-        "schema:value": 0.0240
+        "schema:value": 0.0206
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:1]",
-        "schema:value": 0.3394
+        "schema:value": 0.2824
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:2]",
-        "schema:value": 0.2594
+        "schema:value": 0.2732
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:3]",
-        "schema:value": 0.1823
+        "schema:value": 0.2130
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:2, Predicted:4]",
-        "schema:value": 0.1948
+        "schema:value": 0.2108
       },
+
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:0]",
-        "schema:value": 0.0077
+        "schema:value": 0.0049
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:1]",
-        "schema:value": 0.1895
+        "schema:value": 0.1335
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:2]",
-        "schema:value": 0.1948
+        "schema:value": 0.1955
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:3]",
-        "schema:value": 0.2240
+        "schema:value": 0.2714
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:3, Predicted:4]",
-        "schema:value": 0.3839
+        "schema:value": 0.3947
       },
+
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:0]",
-        "schema:value": 0.0012
+        "schema:value": 0.0000
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:1]",
-        "schema:value": 0.0501
+        "schema:value": 0.0246
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:2]",
-        "schema:value": 0.1032
+        "schema:value": 0.0732
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:3]",
-        "schema:value": 0.1761
+        "schema:value": 0.1653
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Normalized Confusion Matrix [Actual:4, Predicted:4]",
-        "schema:value": 0.6694
+        "schema:value": 0.7368
       },
       {
         "@type": "schema:PropertyValue",
@@ -154,55 +158,55 @@
       "@type": "schema:PropertyValue",
       "schema:name": "Area Under Curve",
       "schema:propertyID": "AUC_Class_0",
-      "schema:value": 0.95
+      "schema:value": 0.96
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Average Precision",
         "schema:propertyID": "AP_Class_1",
-        "schema:value": 0.12
+        "schema:value": 0.16
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Area Under Curve",
         "schema:propertyID": "AUC_Class_1",
-        "schema:value": 0.83
+        "schema:value": 0.85
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Average Precision",
         "schema:propertyID": "AP_Class_2",
-        "schema:value": 0.10
+        "schema:value": 0.11
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Area Under Curve",
         "schema:propertyID": "AUC_Class_2",
-        "schema:value": 0.93
+        "schema:value": 0.92
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Average Precision",
         "schema:propertyID": "AP_Class_3",
-        "schema:value": 0.18
+        "schema:value": 0.23
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Area Under Curve",
         "schema:propertyID": "AUC_Class_3",
-        "schema:value": 0.96
+        "schema:value": 0.97
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Average Precision",
         "schema:propertyID": "AP_Class_4",
-        "schema:value": 0.30
+        "schema:value": 0.34
       },
       {
         "@type": "schema:PropertyValue",
         "schema:name": "Area Under Curve",
         "schema:propertyID": "AUC_Class_4",
-        "schema:value": 0.98
+        "schema:value": 0.99
       }
     ]
   },
