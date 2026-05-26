@@ -173,9 +173,23 @@ CSVs are read by the experiment notebook.
 
 ## Licenses
 
+### Input Data
+**Source**: South Dublin County Council (SDCC) Traffic Flow Data (January–June 2022), obtained from data.europa.eu.
+- **Licence**: Creative Commons Attribution 4.0 International (CC BY 4.0), SPDX identifier: `CC-BY-4.0`.
+- **Verification of permitted use**: The CC BY 4.0 licence permits use for academic research, machine learning model development, and the creation of derived works.
+- **Obligations**: The licence requires attribution to the original source. It does not include ShareAlike provisions, meaning derived works may be licensed under compatible terms without mandatory copyleft restrictions.
+
+### Software / Code
+- **Licence**: MIT Licence, SPDX identifier: `MIT`. The full licence text is provided in the `LICENSE` file in the repository root.
+- **Justification**: The MIT Licence was selected for its permissiveness, simplicity, and widespread adoption in academic and open-source software projects.
+- **Compatibility with input data licence**: The MIT Licence is compatible with CC BY 4.0 because both licences impose only attribution requirements and contain no ShareAlike or copyleft provisions. This ensures the software can legally process CC BY 4.0-licensed data without licensing conflicts.
+
+### Output Data
+- **Licence**: Creative Commons Attribution 4.0 International (CC BY 4.0), SPDX identifier: `CC-BY-4.0`.
+
 ## Contributors with ORCIDs
 
-- Habib Ahmad - 
+- Habib Ahmad - 0009-0002-0332-2702
 - Johannes Held - 
 - Kyzer Gerez - 0000-0003-4463-3929
 - Gevorg Zakaryan - 0009-0002-8980-8948
