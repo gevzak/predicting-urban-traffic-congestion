@@ -1,0 +1,261 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": { "@id": "cr:data", "@type": "@json" },
+    "dataType": { "@id": "cr:dataType", "@type": "@vocab" },
+    "dct": "http://purl.org/dc/terms/",
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": { "@id": "cr:examples", "@type": "@json" },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "unitCode": "sc:unitCode"
+  },
+
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+
+  "name": "sdcc-traffic-flow-2022-h1",
+  "description": "Traffic flow and congestion measurements at 15-minute intervals from 61 SCATS junctions managed by South Dublin County Council, covering January-June 2022. Republished here as a 3NF relational dataset (Calendar, TrafficSites, TrafficMeasurements) hosted in TU Wien's DBRepo at https://test.dbrepo.tuwien.ac.at/database/4c334c86-77a1-44b7-a649-0588a5362a06 .",
+  "creator":   { "@type": "Organization", "name": "South Dublin County Council" },
+  "publisher": { "@type": "Organization", "name": "South Dublin County Council" },
+  "datePublished": "2022",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://data.smartdublin.ie/dataset/traffic-flow-data-jan-to-june-2022-sdcc1",
+  "sameAs": "https://test.dbrepo.tuwien.ac.at/database/4c334c86-77a1-44b7-a649-0588a5362a06",
+  "version": "1.0.0",
+  "citeAs": "South Dublin County Council (2022). Traffic Flow Data Jan to June 2022. SDCC Open Data Portal. https://data.smartdublin.ie/dataset/traffic-flow-data-jan-to-june-2022-sdcc1",
+
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "sdcc-csv",
+      "name": "sdcc-traffic-flow-2022-h1.csv",
+      "description": "Source CSV: SDCC Traffic Flow Data, January-June 2022, 15-minute interval measurements at 61 junctions in South Dublin. Original ArcGIS export from the SDCC Open Data Portal. This is the file that was ingested into DBRepo.",
+      "contentUrl": "https://data-sdublincoco.opendata.arcgis.com/api/download/v1/items/ce994c07d66e4ce582c4d608f339fcd9/csv?layers=0",
+      "encodingFormat": "text/csv",
+      "contentSize": "78981328 B",
+      "sha256": "1f2d9acd0c35037ab139d8e513c45050aa8a198d178733718a54bdeb5dcdd441",
+      "license": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "calendar",
+      "name": "Calendar",
+      "description": "Calendar dimension: one row per distinct measurement date with its two-letter day-of-week code (MO, TU, WE, TH, FR, SA, SU). In DBRepo this is a normalised dimension table; in the source CSV the values appear inline on every row.",
+      "key": { "@id": "calendar/date" },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "calendar/date",
+          "name": "date",
+          "description": "Calendar date of the measurement, ISO 8601.",
+          "dataType": "sc:Date",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "date" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "calendar/day_of_week",
+          "name": "day_of_week",
+          "description": "Two-letter day-of-week code (MO/TU/WE/TH/FR/SA/SU).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "day" }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "traffic-sites",
+      "name": "TrafficSites",
+      "description": "Site dimension: one row per physical SCATS junction in South Dublin (61 sites in 2022 H1). In DBRepo this is a normalised dimension table; in the source CSV the site code appears inline on every row.",
+      "key": { "@id": "traffic-sites/site_id" },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-sites/site_id",
+          "name": "site_id",
+          "description": "SCATS junction identifier (e.g. N01111A). Same code SDCC uses internally.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "site" }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "traffic-measurements",
+      "name": "TrafficMeasurements",
+      "description": "Core fact table: one row per 15-minute traffic measurement at one site. ~1.05M rows.",
+      "key": { "@id": "traffic-measurements/observation_id" },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/observation_id",
+          "name": "observation_id",
+          "description": "Surrogate primary key in DBRepo, 1..N in upload order. Maps to the ObjectId column carried by the source CSV.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "ObjectId" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/site_id",
+          "name": "site_id",
+          "description": "Foreign key to TrafficSites.site_id.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "site" }
+          },
+          "references": { "field": { "@id": "traffic-sites/site_id" } }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/date",
+          "name": "date",
+          "description": "Foreign key to Calendar.date.",
+          "dataType": "sc:Date",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "date" }
+          },
+          "references": { "field": { "@id": "calendar/date" } }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/start_time",
+          "name": "start_time",
+          "description": "Start of the 15-minute interval, HH:MM. Re-derived as end_time minus 15 min during ingest (the source CSV's start_time column contained corrupt ArcGIS timestamps).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "start_time" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/end_time",
+          "name": "end_time",
+          "description": "End of the 15-minute interval, HH:MM. '24:00' denotes midnight at end-of-day in the SDCC source; stored as-is, not coerced.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "end_time" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/flow",
+          "name": "flow",
+          "description": "Vehicle count detected during the interval (dimensionless count).",
+          "dataType": "sc:Integer",
+          "unitCode": "http://qudt.org/vocab/unit/NUM",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "flow" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/flow_pc",
+          "name": "flow_pc",
+          "description": "Flow as a percentage of historical capacity for this site/time.",
+          "dataType": "sc:Integer",
+          "unitCode": "http://qudt.org/vocab/unit/PERCENT",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "flow_pc" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/cong",
+          "name": "cong",
+          "description": "Number of congested sub-intervals in the 15-minute interval (count).",
+          "dataType": "sc:Integer",
+          "unitCode": "http://qudt.org/vocab/unit/NUM",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "cong" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/cong_pc",
+          "name": "cong_pc",
+          "description": "Congestion as a percentage of the cycle time.",
+          "dataType": "sc:Integer",
+          "unitCode": "http://qudt.org/vocab/unit/PERCENT",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "cong_pc" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/dsat",
+          "name": "dsat",
+          "description": "Degree of saturation: ratio of demand to discharge rate at the detector (dimensionless).",
+          "dataType": "sc:Integer",
+          "unitCode": "http://qudt.org/vocab/unit/NUM",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "dsat" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "traffic-measurements/dsat_pc",
+          "name": "dsat_pc",
+          "description": "Degree of saturation expressed as a percentage.",
+          "dataType": "sc:Integer",
+          "unitCode": "http://qudt.org/vocab/unit/PERCENT",
+          "source": {
+            "fileObject": { "@id": "sdcc-csv" },
+            "extract": { "column": "dsat_pc" }
+          }
+        }
+      ]
+    }
+  ]
+}

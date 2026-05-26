@@ -171,6 +171,27 @@ CSVs are read by the experiment notebook.
   sanity check; use `--dump-diff PATH` to write the full per-row diff to a
   CSV when a mismatch occurs.
 
+## Metadata
+
+[`croissant.json`](croissant.json) at the repo root is a Croissant 1.0
+JSON-LD metadata record describing the input dataset, its source CSV
+distribution, and the field-level schema (data types and QUDT unit URIs
+for numeric attributes) across the three tables (Calendar, TrafficSites,
+TrafficMeasurements).
+
+DBRepo's column-level unit annotations use OM-2 URIs (set at the time
+the data was ingested). The Croissant record uses QUDT URIs. The two
+ontologies are equivalent for the units in question (percent,
+dimensionless count); the choice reflects the convention of each
+target ecosystem. Both records are authoritative for their respective
+catalogue.
+
+Validate the Croissant record with:
+
+```bash
+mlcroissant validate --jsonld croissant.json
+```
+
 ## Licenses
 
 ### Input Data
