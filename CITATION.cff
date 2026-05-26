@@ -22,8 +22,11 @@ repository-code: "https://github.com/gevzak/predicting-urban-traffic-congestion"
 license: MIT
 version: "1.0.1"
 date-released: "2026-05-27"
-doi: "10.5281/zenodo.20403050"
+doi: "10.5281/zenodo.20365705"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.20403050"
+    value: "10.5281/zenodo.20365705"
     description: "Concept DOI on Zenodo (resolves to the latest release)."
+  - type: doi
+    value: "10.5281/zenodo.20403050"
+    description: "Version DOI on Zenodo for v1.0.1."
