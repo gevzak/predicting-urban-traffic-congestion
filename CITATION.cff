@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata in this file."
+title: "Predicting Urban Traffic Congestion Levels using Multi-Layer Perceptrons on SDCC SCOOT Data"
+type: software
+authors:
+  - family-names: Ahmad
+    given-names: Habib
+    affiliation: TU Wien
+    orcid: "https://orcid.org/0009-0002-0332-2702"
+  - family-names: Held
+    given-names: Johannes
+    affiliation: TU Wien
+  - family-names: Gerez
+    given-names: Kyzer
+    affiliation: TU Wien
+    orcid: "https://orcid.org/0000-0003-4463-3929"
+  - family-names: Zakaryan
+    given-names: Gevorg
+    affiliation: TU Wien
+    orcid: "https://orcid.org/0009-0002-8980-8948"
+repository-code: "https://github.com/gevzak/predicting-urban-traffic-congestion"
+license: MIT
+version: "1.0.1"
+date-released: "2026-05-27"
+doi: "10.5281/zenodo.20403050"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20403050"
+    description: "Concept DOI on Zenodo (resolves to the latest release)."

@@ -1,5 +1,16 @@
 # Predicting Urban Traffic Congestion Levels using Multi-Layer Perceptrons on SDCC SCOOT Data
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20403050.svg)](https://doi.org/10.5281/zenodo.20403050)
+
+## Citation
+
+If you use this software, please cite the archived release on Zenodo
+(see [`CITATION.cff`](CITATION.cff)). The concept DOI
+[10.5281/zenodo.20403050](https://doi.org/10.5281/zenodo.20403050)
+always resolves to the latest release. The release was minted via the
+GitHub–Zenodo integration, so each tagged GitHub release archives a new
+version automatically.
+
 ## Abstract
 
 This experiment aims to classify traffic congestion levels across South Dublin County. Using
