@@ -213,5 +213,11 @@
 
   "fair4ml:intendedUse": "Predict multi-level traffic congestion (0–4) from sensor and temporal features for traffic engineers and urban mobility analysts.",
 
-  "fair4ml:modelRisksBiasLimitations": "Model performance depends on the quality of sensor data. Class imbalance handled via weighting but may still bias predictions. Generalization outside observed traffic sites and across seasons is not validated. Target labels are derived using heuristic quantile-based binning."
+  "fair4ml:modelRisksBiasLimitations": "Model performance depends on the quality of sensor data. Class imbalance handled via weighting but may still bias predictions. Generalization outside observed traffic sites and across seasons is not validated. Target labels are derived using heuristic quantile-based binning.",
+
+  "schema:subjectOf": {
+    "@type": "schema:CreativeWork",
+    "@id": "docs/model-card.md",
+    "schema:name": "Model Card"
+  }
 }

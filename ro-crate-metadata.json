@@ -37,6 +37,7 @@
         { "@id": "notebooks/" },
         { "@id": "src/" },
         { "@id": "docs/" },
+        { "@id": "docs/model-card.md" },
         { "@id": "outputs/" },
         { "@id": "requirements/" },
         { "@id": "LICENSE" },
@@ -203,6 +204,12 @@
       "@type": "CreativeWork",
       "name": "Creative Commons Attribution 4.0 International",
       "alternateName": "CC-BY-4.0"
+    },
+    {
+      "@id": "https://www.python.org/",
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "alternateName": "Python 3"
     },
     {
       "@id": "https://www.python.org/",
