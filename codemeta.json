@@ -49,7 +49,12 @@
     {
       "@type": "Person",
       "name": "Johannes Held",
-      "affiliation": "TU Wien"
+      "affiliation": "TU Wien",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "https://registry.identifiers.org/registry/orcid",
+        "value": "0009-0003-3806-507X"
+      }
     }
   ],
   "dependencies": [

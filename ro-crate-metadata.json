@@ -1,0 +1,214 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      },
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Predicting Urban Traffic Congestion Levels using Multi-Layer Perceptrons on SDCC SCOOT Data",
+      "description": "Machine learning pipeline for predicting urban traffic congestion using SDCC traffic flow data with semantic metadata mapping, 3NF database design, and DBRepo integration.",
+      "datePublished": "2026-05-27",
+      "license": {
+        "@id": "https://spdx.org/licenses/MIT"
+      },
+      "author": [
+        { "@id": "https://orcid.org/0009-0002-0332-2702" },
+        { "@id": "https://orcid.org/0000-0003-4463-3929" },
+        { "@id": "https://orcid.org/0009-0002-8980-8948" },
+        { "@id": "#johannes-held" }
+      ],
+      "identifier": "https://doi.org/10.5281/zenodo.20365705",
+      "mainEntity": { "@id": "notebooks/01_sdcc_traffic_full_pipeline_mlp.ipynb" },
+      "hasPart": [
+        { "@id": "data/raw/Traffic_Flow_Data_Jan_to_June_2022_SDCC.csv" },
+        { "@id": "data/3NF_proof.md" },
+        { "@id": "data/create.sql" },
+        { "@id": "data/ER-diagram.mmd" },
+        { "@id": "data/views.sql" },
+        { "@id": "notebooks/" },
+        { "@id": "src/" },
+        { "@id": "docs/" },
+        { "@id": "outputs/" },
+        { "@id": "requirements/" },
+        { "@id": "LICENSE" },
+        { "@id": "CITATION.cff" },
+        { "@id": "codemeta.json" },
+        { "@id": "croissant.json" },
+        { "@id": "config_mlp_v1.yaml" },
+        { "@id": ".env.example" }
+      ]
+    },
+    {
+      "@id": "https://orcid.org/0009-0002-0332-2702",
+      "@type": "Person",
+      "name": "Habib Ahmad",
+      "affiliation": { "@id": "https://ror.org/047ax9314" }
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-4463-3929",
+      "@type": "Person",
+      "name": "Kyzer Gerez",
+      "affiliation": { "@id": "https://ror.org/047ax9314" }
+    },
+    {
+      "@id": "https://orcid.org/0009-0002-8980-8948",
+      "@type": "Person",
+      "name": "Gevorg Zakaryan",
+      "affiliation": { "@id": "https://ror.org/047ax9314" }
+    },
+    {
+      "@id": "#johannes-held",
+      "@type": "Person",
+      "name": "Johannes Held",
+      "affiliation": { "@id": "https://ror.org/047ax9314" }
+    },
+    {
+      "@id": "https://ror.org/047ax9314",
+      "@type": "Organization",
+      "name": "TU Wien",
+      "url": "https://www.tuwien.at/"
+    },
+    {
+      "@id": "data/raw/Traffic_Flow_Data_Jan_to_June_2022_SDCC.csv",
+      "@type": "File",
+      "name": "Traffic Flow Data Jan to June 2022 SDCC",
+      "description": "Raw traffic flow data from South Dublin County Council.",
+      "encodingFormat": "text/csv",
+      "license": { "@id": "https://spdx.org/licenses/CC-BY-4.0" }
+    },
+    {
+      "@id": "data/3NF_proof.md",
+      "@type": "File",
+      "name": "3NF Proof",
+      "description": "Documentation for the 3rd Normal Form database design.",
+      "encodingFormat": "text/markdown"
+    },
+    {
+      "@id": "data/create.sql",
+      "@type": "File",
+      "name": "Database Schema",
+      "description": "SQL script for creating the 3NF database schema.",
+      "encodingFormat": "application/sql"
+    },
+    {
+      "@id": "data/ER-diagram.mmd",
+      "@type": "File",
+      "name": "ER Diagram",
+      "description": "Entity-Relationship diagram in Mermaid format.",
+      "encodingFormat": "text/vnd.mermaid"
+    },
+    {
+      "@id": "data/views.sql",
+      "@type": "File",
+      "name": "Database Views",
+      "description": "SQL script for creating the de-normalized views used in the pipeline.",
+      "encodingFormat": "application/sql"
+    },
+    {
+      "@id": "notebooks/01_sdcc_traffic_full_pipeline_mlp.ipynb",
+      "@type": "SoftwareSourceCode",
+      "name": "ML Pipeline Notebook",
+      "description": "Jupyter notebook containing the full machine learning pipeline.",
+      "programmingLanguage": { "@id": "https://www.python.org/" },
+      "encodingFormat": "application/x-ipynb+json"
+    },
+    {
+      "@id": "notebooks/",
+      "@type": "Dataset",
+      "name": "Notebooks",
+      "description": "Collection of Jupyter notebooks for data processing and analysis."
+    },
+    {
+      "@id": "src/",
+      "@type": "Dataset",
+      "name": "Source Code",
+      "description": "Python source code for database interaction and data loading."
+    },
+    {
+      "@id": "docs/",
+      "@type": "Dataset",
+      "name": "Documentation",
+      "description": "Project documentation files."
+    },
+    {
+      "@id": "outputs/",
+      "@type": "Dataset",
+      "name": "Outputs",
+      "description": "Generated models, metadata, and figures."
+    },
+    {
+      "@id": "requirements/",
+      "@type": "Dataset",
+      "name": "Requirements",
+      "description": "Dependency lists for local and Colab environments."
+    },
+    {
+      "@id": "LICENSE",
+      "@type": "File",
+      "name": "MIT License",
+      "encodingFormat": "text/plain"
+    },
+    {
+      "@id": "CITATION.cff",
+      "@type": "File",
+      "name": "Citation Metadata",
+      "description": "Citation information for the project in Citation File Format.",
+      "encodingFormat": "text/yaml"
+    },
+    {
+      "@id": "codemeta.json",
+      "@type": "File",
+      "name": "Software Metadata",
+      "description": "Software metadata in CodeMeta format.",
+      "encodingFormat": "application/json"
+    },
+    {
+      "@id": "croissant.json",
+      "@type": "File",
+      "name": "Dataset Metadata",
+      "description": "Dataset metadata in Croissant format.",
+      "encodingFormat": "application/ld+json"
+    },
+    {
+      "@id": "config_mlp_v1.yaml",
+      "@type": "File",
+      "name": "Pipeline Configuration",
+      "description": "Configuration file for the MLP pipeline.",
+      "encodingFormat": "text/yaml"
+    },
+    {
+      "@id": ".env.example",
+      "@type": "File",
+      "name": "Environment Variables Template",
+      "description": "Template for environment variables required by the project.",
+      "encodingFormat": "text/plain"
+    },
+    {
+      "@id": "https://spdx.org/licenses/MIT",
+      "@type": "CreativeWork",
+      "name": "MIT License",
+      "alternateName": "MIT"
+    },
+    {
+      "@id": "https://spdx.org/licenses/CC-BY-4.0",
+      "@type": "CreativeWork",
+      "name": "Creative Commons Attribution 4.0 International",
+      "alternateName": "CC-BY-4.0"
+    },
+    {
+      "@id": "https://www.python.org/",
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "alternateName": "Python 3"
+    }
+  ]
+}

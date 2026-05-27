@@ -184,6 +184,8 @@ CSVs are read by the experiment notebook.
 
 ## Metadata
 
+The project is described as a **Research Object Crate (RO-Crate)**. The metadata is contained in the [`ro-crate-metadata.json`](ro-crate-metadata.json) file at the repository root, which conforms to the RO-Crate 1.1 specification.
+
 [`croissant.json`](croissant.json) at the repo root is a Croissant 1.0
 JSON-LD metadata record describing the input dataset, its source CSV
 distribution, and the field-level schema (data types and QUDT unit URIs
@@ -222,6 +224,6 @@ mlcroissant validate --jsonld croissant.json
 ## Contributors with ORCIDs
 
 - Habib Ahmad - 0009-0002-0332-2702
-- Johannes Held - 
+- Johannes Held - 0009-0003-3806-507X
 - Kyzer Gerez - 0000-0003-4463-3929
 - Gevorg Zakaryan - 0009-0002-8980-8948
