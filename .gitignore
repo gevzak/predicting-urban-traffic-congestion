@@ -152,6 +152,7 @@ activemq-data/
 .envrc
 .venv
 .local/
+.idea
 env/
 venv/
 ENV/
