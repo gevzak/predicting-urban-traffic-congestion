@@ -58,10 +58,10 @@ and predictions are not guranteed to be numerically identical.
 * **Pipeline Source Code:** Python training notebooks, relevant scripts, and dependencies pinned via `codemeta.json`.
 
 ### Preserved Outputs
-* **Trained Model Checkpoint:** `outputs/models/` — Deep learning classifier weights. Registered at TUWRD: 
-[Insert TUWRD Model DOI Link from T3.9].
-* **Model Metadata:** `mlp_classifier_v1.json` — Compliant machine-readable asset tracking sheet. Registered at TUWRD: 
-[Insert TUWRD Model DOI Link from T3.9]
+* **Trained Model Checkpoint:** `outputs/model_artefacts/` — Deep learning classifier weights. Registered at TUWRD: 
+[10.70124/0wpaq-xkp80](https://handle.test.datacite.org/10.70124/0wpaq-xkp80).
+* **Model Metadata:** `mlp_classifier_v1.json` — Compliant machine-readable asset tracking sheet. Registered at TUWRD:
+  [10.70124/0wpaq-xkp80](https://handle.test.datacite.org/10.70124/0wpaq-xkp80)
 * **Performance Evaluation Records:** Plots (`outputs/figures/`). Registered at TUWRD: 
 [Insert TUWRD Generated Data DOI Link from T3.10].
 * **Human Documentation:** `docs/model-card.md` — Contextual overview of risks and evaluation benchmarks.
