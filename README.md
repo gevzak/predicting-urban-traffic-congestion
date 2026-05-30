@@ -62,8 +62,7 @@ and predictions are not guranteed to be numerically identical.
 [10.70124/0wpaq-xkp80](https://handle.test.datacite.org/10.70124/0wpaq-xkp80).
 * **Model Metadata:** `mlp_classifier_v1.json` — Compliant machine-readable asset tracking sheet. Registered at TUWRD:
   [10.70124/0wpaq-xkp80](https://handle.test.datacite.org/10.70124/0wpaq-xkp80)
-* **Performance Evaluation Records:** Plots (`outputs/figures/`). Registered at TUWRD: 
-[10.70124/4bcm8-dcj47].
+* **Performance Evaluation Records:** Plots (`outputs/figures/`). Registered at TUWRD: [10.70124/4bcm8-dcj47](https://handle.test.datacite.org/10.70124/4bcm8-dcj47).
 * **Human Documentation:** `docs/model-card.md` — Contextual overview of risks and evaluation benchmarks.
 
 ## File Organization
